@@ -75,7 +75,7 @@ export default class Document{
 			}
 
 
-			if($.isNode){//node
+			if($tool.isNode){//node
 				if(typeof inputFile=='string'){//file name
 					require('fs').readFile(inputFile,function(error, data){
 						if(error)

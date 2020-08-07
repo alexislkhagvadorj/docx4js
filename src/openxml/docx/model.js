@@ -10,7 +10,7 @@ export default class model extends require('../parser'){
 	parse(visitFactories){
 		var visitors=[]
 		var paramizedVisitFactories=[];
-		$.map(visitFactories, function(visitFactory){
+		$tool.map(visitFactories, function(visitFactory){
 			var visitor=visitFactory(this)
 			if(visitor && visitor.visit()!==false){
 				visitors.push(visitor)

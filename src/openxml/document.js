@@ -4,7 +4,7 @@ export default class Document extends require('../document'){
 	constructor(){
 		super(...arguments)
 		var rels=this.rels={}
-		$.each(new Part("",this).rels,function(id,rel){
+		$tool.each(new Part("",this).rels,function(id,rel){
 			rels[rel.type]=rel.target
 		})
 		this.partMain=new Part(this.rels['officeDocument'],this)

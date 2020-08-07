@@ -11,7 +11,7 @@ export default class document extends require('../document'){
 		super(...arguments)
 		var rels=this.rels,
 			builtIn='settings,webSettings,theme,styles,stylesWithEffects,fontTable,numbering,footnotes,endnotes'.split(',')
-		$.each(this.partMain.rels,function(id,rel){
+		$tool.each(this.partMain.rels,function(id,rel){
 			builtIn.indexOf(rel.type)!=-1 && (rels[rel.type]=rel.target)
 		})
 	}
@@ -46,7 +46,7 @@ export default class document extends require('../document'){
 			})([])
 		}
 		this.content=this.factory(this.partMain.documentElement, this)
-		var roots=this.content.parse($.isArray(visitFactories) ? visitFactories : $.toArray(arguments))
+		var roots=this.content.parse($tool.isArray(visitFactories) ? visitFactories : $tool.toArray(arguments))
 		this.release()
 		return roots.length==1 ? roots[0] : roots
 	}
