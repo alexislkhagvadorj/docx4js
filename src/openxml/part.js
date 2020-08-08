@@ -2,7 +2,7 @@ export default class part{
 	constructor(name,doc){
 		this.name=name
 		this.doc=doc
-		this.documentElement=doc.parts[name] && $.parseXML(doc.parts[name].asText()).documentElement
+		this.documentElement=doc.parts[name] && $tool.parseXML(doc.parts[name].asText()).documentElement
 		this.rels={}
 
 		var folder="",
@@ -16,7 +16,7 @@ export default class part{
 		if(!doc.parts[relName]) return;
 		this.relName=relName
 		//console.log("part:"+name+",relName:"+relName+",folder:"+folder+", text:"+doc.parts[relName].asText())
-		$.parseXML(doc.parts[relName].asText())
+		$tool.parseXML(doc.parts[relName].asText())
 			.documentElement
 			.$("Relationship")
 			.asArray()

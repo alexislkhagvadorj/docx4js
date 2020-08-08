@@ -7,7 +7,7 @@ try {
 
 
 function makeTool(xmlParser, Document, Node, NodeList, scopable){
-	var $={
+	var $tool={
 		isNode,
 		parseXML: xmlParser,
 		extend: Object.assign,
@@ -31,7 +31,7 @@ function makeTool(xmlParser, Document, Node, NodeList, scopable){
 		}
 	};
 
-	$.extend($,{
+	$tool.extend($tool,{
 		toArray: function(args){
 			var a=[];
 			for(var i=0,len=args.length;i<len;i++)
@@ -41,7 +41,7 @@ function makeTool(xmlParser, Document, Node, NodeList, scopable){
 	})
 
 	var directChildSelector=/((^|,)\s*>)/, id="sxxx"
-	$.extend(Node.prototype,{
+	$tool.extend(Node.prototype,{
 		$: function(selector){
 			if(!directChildSelector.test(selector))
 				return this.querySelectorAll(selector)
@@ -107,7 +107,7 @@ function makeTool(xmlParser, Document, Node, NodeList, scopable){
 		}
 	})
 
-	$.extend(NodeList.prototype,{
+	$tool.extend(NodeList.prototype,{
 		asArray: function(o){
 			o=o||[]
 			for(var i=0,len=this.length;i<len;i++)
@@ -118,12 +118,12 @@ function makeTool(xmlParser, Document, Node, NodeList, scopable){
 		map: Array.prototype.map
 	})
 
-	return $
+	return $tool
 }
 
 
 if(!isNode){
-	window.$=makeTool(...(function(){
+	window.$tool=makeTool(...(function(){
 	    function parser(x){
 	        x=x.trim()
 	        if(typeof(DOMParser)!='undefined')
@@ -147,7 +147,7 @@ if(!isNode){
 	    return [parser, Document, Element, NodeList, supportScopeSelector()]
 	})())
 }else{
-	global.$=makeTool(...(function(xmldom){
+	global.$tool=makeTool(...(function(xmldom){
 		var DOMParser=xmldom.DOMParser,
 			DOMImplementation=xmldom.DOMImplementation;
 
