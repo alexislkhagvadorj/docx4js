@@ -1,7 +1,9 @@
-export default class group extends require('./shape'){
-	_getValidChildren(){
-		return this.wXml.$('wsp')
-	}
+export default class group extends require('./shape') {
+  _getValidChildren() {
+    return this.wXml.$('wsp');
+  }
 
-	static get type(){return 'group'}
+  static get type() {
+    return 'group';
+  }
 }
