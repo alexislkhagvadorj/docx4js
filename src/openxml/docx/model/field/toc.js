@@ -1,7 +1,9 @@
-export default class toc extends require('./field'){
-	constructor(instruct){
-		super(...arguments)
-	}
+export default class toc extends require('./field') {
+  constructor(instruct) {
+    super(...arguments);
+  }
 
-	static get type(){return 'field.toc'}
+  static get type() {
+    return 'field.toc';
+  }
 }

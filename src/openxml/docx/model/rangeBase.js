@@ -1,13 +1,9 @@
-export default class rangeBase extends require('../model'){
-	iterate(visitor){
+export default class rangeBase extends require('../model') {
+  iterate(visitor) {}
+  first() {}
+  last() {}
 
-	}
-	first(){
-
-	}
-	last(){
-
-	}
-
-	static get type(){return 'range'}
+  static get type() {
+    return 'range';
+  }
 }
