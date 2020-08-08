@@ -76,8 +76,19 @@ export default class Factory extends Base {
       ) {
         switch (wXml.lastChild.localName) {
           case 'fldChar':
+            switch (wXml.lastChild.attr('w:fldCharType')) {
+              case 'begin':
+                return new (require('./model/fieldBegin'))(wXml.lastChild, doc, parent);
+                break;
+              case 'end':
+                return new (require('./model/fieldEnd'))(wXml.lastChild, doc, parent);
+                break;
+              case 'separate':
+                return new (require('./model/fieldSeparate'))(wXml.lastChild, doc, parent);
+                break;
+            }
           case 'instrText':
-            return factory(wXml.lastChild, doc, parent);
+            return new (require('./model/fieldInstruct'))(wXml.lastChild, doc, parent);
         }
       }
 
