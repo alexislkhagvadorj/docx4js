@@ -64,25 +64,25 @@ Drawing.SpProperties = {
     });
   },
   solidFill(x) {
-    var elColor = x.firstChild,
-      color = this.asColor(elColor.attr('val')),
-      t;
+    var elColor = x.firstChild;
+    if (elColor) {
+      var color = this.asColor(elColor.attr('val')), t;
+      if (color == 'phClr') return 'phClr';
 
-    if (color == 'phClr') return 'phClr';
+      switch (elColor.localName) {
+        case 'schemeClr':
+          color = this.wDoc.getColorTheme().get(color);
+          break;
+      }
 
-    switch (elColor.localName) {
-      case 'schemeClr':
-        color = this.wDoc.getColorTheme().get(color);
-        break;
+      if ((t = elColor.$1('shade')))
+        color = this.shadeColor(color, (-1 * parseInt(t.attr('val'))) / 1000);
+
+      if ((t = elColor.$1('lumOff')))
+        color = this.shadeColor(color, (-1 * parseInt(t.attr('val'))) / 1000);
+
+      return color;
     }
-
-    if ((t = elColor.$1('shade')))
-      color = this.shadeColor(color, (-1 * parseInt(t.attr('val'))) / 1000);
-
-    if ((t = elColor.$1('lumOff')))
-      color = this.shadeColor(color, (-1 * parseInt(t.attr('val'))) / 1000);
-
-    return color;
   },
   noFill(x) {
     return 1;
