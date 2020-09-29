@@ -5,8 +5,9 @@ import FormatTheme from './theme/format';
 
 import Table from './model/table';
 import List from './model/list';
+import Base from '../document';
 
-export default class document extends require('../document') {
+export default class document extends Base {
   constructor() {
     super(...arguments);
     var rels = this.rels,

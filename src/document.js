@@ -174,39 +174,19 @@ export default class Document {
         resolve(new DocumentSelf(parts, raw, props));
       }
 
-      if ($tool.isNode) {
-        //node
-        if (typeof inputFile == 'string') {
-          //file name
-          require('fs').readFile(inputFile, function (error, data) {
-            if (error) reject(error);
-            else if (data) {
-              parse(data, {
-                name: inputFile
-                  .split(/[\/\\]/)
-                  .pop()
-                  .replace(/\.docx$/i, ''),
-              });
-            }
+      //browser
+      if (inputFile instanceof Blob) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          parse(e.target.result, {
+            name: inputFile.name.replace(/\.docx$/i, ''),
+            lastModified: inputFile.lastModified,
+            size: inputFile.size,
           });
-        } else {
-          parse(inputFile);
-        }
+        };
+        reader.readAsArrayBuffer(inputFile);
       } else {
-        //browser
-        if (inputFile instanceof Blob) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            parse(e.target.result, {
-              name: inputFile.name.replace(/\.docx$/i, ''),
-              lastModified: inputFile.lastModified,
-              size: inputFile.size,
-            });
-          };
-          reader.readAsArrayBuffer(inputFile);
-        } else {
-          parse(inputFile);
-        }
+        parse(inputFile);
       }
     });
   }

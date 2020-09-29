@@ -110,7 +110,8 @@ class Switch extends Command {
     return b;
   }
 }
-class FieldCode extends Command {
+
+export class FieldCode extends Command {
   constructor(instruct) {
     super(...arguments);
     this.mergeFormat = this.parseKeyWord('MERGEFORMAT');
