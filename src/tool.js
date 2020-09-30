@@ -39,8 +39,9 @@ function makeTool(xmlParser, Document, Node, NodeList, scopable) {
 
   var directChildSelector = /((^|,)\s*>)/,
     id = 'sxxx';
+
   $tool.extend(Node.prototype, {
-    $: function (selector) {
+    $1: function (selector) {
       if (!directChildSelector.test(selector))
         return this.querySelectorAll(selector);
       else if (scopable)
@@ -78,7 +79,7 @@ function makeTool(xmlParser, Document, Node, NodeList, scopable) {
         return nodes;
       }
     },
-    $1: function (selector) {
+    $2: function (selector) {
       if (!directChildSelector.test(selector))
         return this.querySelector(selector);
       else if (scopable)
@@ -168,8 +169,8 @@ if (!isNode) {
           return false;
         }
       }
-      document.$1 = document.querySelector;
-      document.$ = document.querySelectorAll;
+      document.$1 = document.querySelectorAll;
+      document.$2 = document.querySelector;
       return [parser, Document, Element, NodeList, supportScopeSelector()];
     })()
   );

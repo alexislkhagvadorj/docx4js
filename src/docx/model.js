@@ -53,7 +53,7 @@ export default class model extends Parser {
     var n =
       arguments.length == 1
         ? ((key = selector), this.wXml)
-        : this.wXml.$1(selector);
+        : this.wXml.$2(selector);
     return n ? n.attr(key) : null;
   }
   _val(selector) {

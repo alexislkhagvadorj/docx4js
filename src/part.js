@@ -20,7 +20,7 @@ export default class part {
     //console.log("part:"+name+",relName:"+relName+",folder:"+folder+", text:"+doc.parts[relName].asText())
     $tool
       .parseXML(doc.parts[relName].asText())
-      .documentElement.$('Relationship')
+      .documentElement.$1('Relationship')
       .asArray()
       .forEach(function (a, i) {
         this.rels[a.getAttribute('Id')] = {

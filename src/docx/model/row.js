@@ -8,7 +8,7 @@ export default class row extends require('../model') {
   }
   getDirectStyle(pr) {
     return (
-      (pr = this.wXml.$1('>trPr')) &&
+      (pr = this.wXml.$2('>trPr')) &&
       new TableStyle.RowProperties(pr, this.wDoc, this)
     );
   }

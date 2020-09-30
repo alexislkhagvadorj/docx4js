@@ -23,7 +23,7 @@ Graphic.Properties = class Properties extends Drawing.Properties {
   _getValidChildren(t) {
     return super
       ._getValidChildren(...arguments)
-      .concat(this.wXml.$1('spPr').childNodes.asArray());
+      .concat(this.wXml.$2('spPr').childNodes.asArray());
   }
 };
 

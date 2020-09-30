@@ -6,7 +6,7 @@ export default class Shape extends require('../model') {
     return new this.constructor.Properties(this.wXml, this.wDoc, this);
   }
   _getValidChildren() {
-    return this.wXml.$('txbxContent');
+    return this.wXml.$1('txbxContent');
   }
 
   static get type() {
@@ -41,10 +41,10 @@ Shape.Properties = class Properties extends Style.Properties {
 
   _getValidChildren(t) {
     var children = (
-      ((t = this.wXml.$('>style>*')) && t.asArray()) ||
+      ((t = this.wXml.$1('>style>*')) && t.asArray()) ||
       []
-    ).concat(this.wXml.$('>spPr>*, >bodyPr>*').asArray());
-    var bodyPr = this.wXml.$1('bodyPr');
+    ).concat(this.wXml.$1('>spPr>*, >bodyPr>*').asArray());
+    var bodyPr = this.wXml.$2('bodyPr');
     if (bodyPr) {
       for (
         var i = 0, attrs = bodyPr.attributes, len = attrs.length;

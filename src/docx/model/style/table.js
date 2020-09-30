@@ -8,7 +8,7 @@ export default class Table extends Style {
 
     var TableStyle = this.constructor;
     for (
-      var styles = this.wXml.$('tblStylePr'), len = styles.length, i = 0;
+      var styles = this.wXml.$1('tblStylePr'), len = styles.length, i = 0;
       i < len;
       i++
     ) {
@@ -19,15 +19,15 @@ export default class Table extends Style {
   }
   _iterate(f, factories, visitors) {
     var pr = null;
-    (pr = this.wXml.$1('>tblPr:not(:empty)')) &&
+    (pr = this.wXml.$2('>tblPr:not(:empty)')) &&
       new this.constructor.Properties(pr, this.wDoc, this).parse(visitors);
-    (pr = this.wXml.$1('>trPr:not(:empty)')) &&
+    (pr = this.wXml.$2('>trPr:not(:empty)')) &&
       new this.constructor.RowProperties(pr, this.wDoc, this).parse(visitors);
-    (pr = this.wXml.$1('>tcPr:not(:empty)')) &&
+    (pr = this.wXml.$2('>tcPr:not(:empty)')) &&
       new this.constructor.CellProperties(pr, this.wDoc, this).parse(visitors);
-    (pr = this.wXml.$1('>pPr:not(:empty)')) &&
+    (pr = this.wXml.$2('>pPr:not(:empty)')) &&
       new Paragraph.Properties(pr, this.wDoc, this).parse(visitors);
-    (pr = this.wXml.$1('>rPr:not(:empty)')) &&
+    (pr = this.wXml.$2('>rPr:not(:empty)')) &&
       new Inline.Properties(pr, this.wDoc, this).parse(visitors);
   }
   getTarget() {

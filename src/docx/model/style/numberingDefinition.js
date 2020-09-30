@@ -11,13 +11,13 @@ export default class NumberingDefinition extends Style {
       wXml.attr('w:abstractNumId')
     );
     this.wDoc.style.set(this);
-    var link = wXml.$1('numStyleLink');
+    var link = wXml.$2('numStyleLink');
     if (link) this.link = link.attr('w:val');
   }
 
   _iterate(f, factories, visitors) {
     for (
-      var i = 0, children = this.wXml.$('lvl'), l = children.length, t;
+      var i = 0, children = this.wXml.$1('lvl'), l = children.length, t;
       i < l;
       i++
     ) {
@@ -65,13 +65,13 @@ class Level extends Style.Properties {
   parse(visitors) {
     super.parse(...arguments);
     var t, pr;
-    if ((t = this.wXml.$1('>pPr'))) {
+    if ((t = this.wXml.$2('>pPr'))) {
       pr = new (require('./paragraph').Properties)(t, this.wDoc, this);
       pr.type = this.level + ' ' + pr.type;
       pr.parse(...arguments);
     }
 
-    if ((t = this.wXml.$1('>rPr'))) {
+    if ((t = this.wXml.$2('>rPr'))) {
       pr = new Inline.Properties(t, this.wDoc, this);
       pr.type = this.level + ' ' + pr.type;
       pr.parse(...arguments);

@@ -17,16 +17,16 @@ export default class Paragraph extends Style {
     return Numbering.prototype.asNumberingStyle.call(this, ...arguments);
   }
   _iterate(f, factories, visitors) {
-    var pr = this.wXml.$1('pPr');
+    var pr = this.wXml.$2('pPr');
     pr && new this.constructor.Properties(pr, this.wDoc, this).parse(visitors);
 
-    (pr = this.wXml.$1('rPr')) &&
+    (pr = this.wXml.$2('rPr')) &&
       new Inline.Properties(pr, this.wDoc, this).parse(visitors);
 
-    (pr = this.wXml.$1('numPr')) &&
+    (pr = this.wXml.$2('numPr')) &&
       new Numbering.Properties(pr, this.wDoc, this).parse(visitors);
 
-    (pr = this.wXml.$1('framePr')) &&
+    (pr = this.wXml.$2('framePr')) &&
       new this.constructor.FrameProperties(pr, this.wDoc, this).parse(visitors);
   }
 
