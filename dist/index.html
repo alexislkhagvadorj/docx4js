@@ -4,6 +4,7 @@
 	<script src="index.js"></script>
 	<script>
 		function test(input){
+			// var DOCX4JS = require('docx4js');
 			DOCX4JS.load(input.files[0]).then(function(docx){
 				var models=[], go={visit(){}}
 				docx.parse(DOCX4JS.createVisitorFactory(function(identifiedWordModel){

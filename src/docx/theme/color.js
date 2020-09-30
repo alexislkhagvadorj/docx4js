@@ -15,7 +15,7 @@ export default class color {
       //placeholder color, witch will be replaced with direct style
       return name;
     name = this.map[name] || name;
-    if ((t = this.wXml.$1(name))) {
+    if ((t = this.wXml.$2(name))) {
       switch (t.firstChild.localName) {
         case 'sysClr':
           return '#' + t.firstChild.attr('lastClr');

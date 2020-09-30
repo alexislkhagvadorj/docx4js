@@ -1,6 +1,6 @@
 export default class Body extends require('../model') {
   _getValidChildren() {
-    return this.wXml.$('sectPr');
+    return this.wXml.$1('sectPr');
   }
 
   static get type() {

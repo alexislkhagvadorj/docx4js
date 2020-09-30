@@ -5,7 +5,7 @@ export default class Numbering extends require('../style') {
   }
 
   getNumId() {
-    return this.wXml.$1('numId').attr('w:val');
+    return this.wXml.$2('numId').attr('w:val');
   }
 
   asNumberingStyle() {

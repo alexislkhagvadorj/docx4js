@@ -7,7 +7,7 @@ import Table from './model/table';
 import List from './model/list';
 import Base from '../document';
 
-export default class document extends Base {
+export default class Document extends Base {
   constructor() {
     super(...arguments);
     var rels = this.rels,
@@ -21,7 +21,7 @@ export default class document extends Base {
 
   static clone(doc) {
     let { parts, raw, props, rels, partMain } = doc;
-    return new document(parts, raw, props);
+    return new Document(parts, raw, props);
   }
 
   static get ext() {
@@ -63,21 +63,21 @@ export default class document extends Base {
   getColorTheme() {
     if (this.colorTheme) return this.colorTheme;
     return (this.colorTheme = new ColorTheme(
-      this.getPart('theme').documentElement.$1('clrScheme'),
-      this.getPart('settings').documentElement.$1('clrSchemeMapping')
+      this.getPart('theme').documentElement.$2('clrScheme'),
+      this.getPart('settings').documentElement.$2('clrSchemeMapping')
     ));
   }
   getFontTheme() {
     if (this.fontTheme) return this.fontTheme;
     return (this.fontTheme = new FontTheme(
-      this.getPart('theme').documentElement.$1('fontScheme'),
-      this.getPart('settings').documentElement.$1('themeFontLang')
+      this.getPart('theme').documentElement.$2('fontScheme'),
+      this.getPart('settings').documentElement.$2('themeFontLang')
     ));
   }
   getFormatTheme() {
     if (this.formatTheme) return this.formatTheme;
     return (this.formatTheme = new FormatTheme(
-      this.getPart('theme').documentElement.$1('fmtScheme'),
+      this.getPart('theme').documentElement.$2('fmtScheme'),
       this
     ));
   }

@@ -13,7 +13,7 @@ export default class cell extends require('../model') {
 
   getDirectStyle(pr) {
     return (
-      (pr = this.wXml.$1('>tcPr')) &&
+      (pr = this.wXml.$2('>tcPr')) &&
       new TableStyle.CellProperties(pr, this.wDoc, this)
     );
   }

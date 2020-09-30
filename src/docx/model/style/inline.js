@@ -6,7 +6,7 @@ export default class Inline extends Style {
   }
 
   _iterate(f, factories, visitors) {
-    var pr = this.wXml.$1('>rPr');
+    var pr = this.wXml.$2('>rPr');
     pr && new this.constructor.Properties(pr, this.wDoc, this).parse(visitors);
   }
 

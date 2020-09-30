@@ -18,7 +18,7 @@ export default class table extends require('../model') {
   }
   getDirectStyle(pr) {
     return (
-      (pr = this.wXml.$1('>tblPr')) &&
+      (pr = this.wXml.$2('>tblPr')) &&
       new TableStyle.Properties(pr, this.wDoc, this)
     );
   }
@@ -28,7 +28,7 @@ export default class table extends require('../model') {
     var widths = [],
       sum = 0;
     for (
-      var cols = this.wXml.$('>tblGrid>gridCol'), len = cols.length, i = 0, a;
+      var cols = this.wXml.$1('>tblGrid>gridCol'), len = cols.length, i = 0, a;
       i < len;
       i++
     ) {
@@ -95,8 +95,8 @@ export default class table extends require('../model') {
 
 class TableContext {
   constructor(converter) {
-    this.rows = converter.wXml.$('tr').length; //@todo:nested table not work
-    this.cols = converter.wXml.$('>tblGrid>gridCol').length;
+    this.rows = converter.wXml.$1('tr').length; //@todo:nested table not work
+    this.cols = converter.wXml.$1('>tblGrid>gridCol').length;
     this.currentRow = 0;
     this.currentCell = 0;
   }

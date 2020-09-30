@@ -14,7 +14,7 @@ export default class format {
   line(idx, t) {
     if ((t = this._line[idx])) return t;
     return (
-      (t = this.wXml.$1('ln:nth-child(' + (parseInt(idx) + 1) + ')')) &&
+      (t = this.wXml.$2('ln:nth-child(' + (parseInt(idx) + 1) + ')')) &&
       (this._line[idx] = this._converter.ln(t))
     );
   }
@@ -24,7 +24,7 @@ export default class format {
 
     if ((t = this._fill[idx])) return t;
     return (
-      (t = this.wXml.$1(
+      (t = this.wXml.$2(
         'bgFillStyleLst>:nth-child(' + (parseInt(idx) + 1) + ')'
       )) && (this._fill[idx] = this._converter[t.localName](t))
     );
@@ -32,7 +32,7 @@ export default class format {
   bgFill(idx, t) {
     if ((t = this._bgFill[idx])) return t;
     return (
-      (t = this.wXml.$1(
+      (t = this.wXml.$2(
         'bgFillStyleLst>:nth-child(' + (parseInt(idx) + 1) + ')'
       )) && (this._bgFill[idx] = this._converter[t.localName](t))
     );
@@ -40,7 +40,7 @@ export default class format {
   effect(idx, t) {
     if ((t = this._effect[idx])) return t;
     return (
-      (t = this.wXml.$1(
+      (t = this.wXml.$2(
         'effectStyle:nth-child(' + (parseInt(idx) + 1) + ')>effectLst'
       )) && (this._effect[idx] = this._converter.effectLst(t))
     );
@@ -48,7 +48,7 @@ export default class format {
   font(idx, t) {
     if ((t = this._font[idx])) return t;
     return (
-      (t = this.wXml.$1('fontScheme>' + idx + 'Font>latin')) &&
+      (t = this.wXml.$2('fontScheme>' + idx + 'Font>latin')) &&
       (this._effect[idx] = t.attr('typeface'))
     );
   }

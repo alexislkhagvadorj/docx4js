@@ -15,7 +15,7 @@ export default class Drawing extends require('../model') {
 
 Drawing.Properties = class Properties extends Style.Properties {
   _getValidChildren(t) {
-    return [this.wXml.$1('extent'), this.wXml.$1('effectExtent')];
+    return [this.wXml.$2('extent'), this.wXml.$2('effectExtent')];
   }
   extent(x) {
     //inline and anchor
@@ -53,8 +53,8 @@ Drawing.Properties = class Properties extends Style.Properties {
 
 Drawing.SpProperties = {
   xfrm(x) {
-    var ext = x.$1('ext'),
-      offset = x.$1('off');
+    var ext = x.$2('ext'),
+      offset = x.$2('off');
     return (this.world = {
       width: this.pt2Px(this.asPt(ext.attr('cx'), 'cm')),
       height: this.pt2Px(this.asPt(ext.attr('cy'), 'cm')),
@@ -75,10 +75,10 @@ Drawing.SpProperties = {
           break;
       }
 
-      if ((t = elColor.$1('shade')))
+      if ((t = elColor.$2('shade')))
         color = this.shadeColor(color, (-1 * parseInt(t.attr('val'))) / 1000);
 
-      if ((t = elColor.$1('lumOff')))
+      if ((t = elColor.$2('lumOff')))
         color = this.shadeColor(color, (-1 * parseInt(t.attr('val'))) / 1000);
 
       return color;
@@ -88,10 +88,10 @@ Drawing.SpProperties = {
     return 1;
   },
   gradFill(x) {
-    var type = x.$1('lin,path'),
+    var type = x.$2('lin,path'),
       o = this.asObject(type),
       stops = [];
-    for (var gs = x.$('gs'), a, i = 0, len = gs.length; i < len; i++)
+    for (var gs = x.$1('gs'), a, i = 0, len = gs.length; i < len; i++)
       stops.push({
         position: parseInt(gs[i].attr('pos')) / 1000,
         color: this.solidFill(gs[i]),
@@ -104,20 +104,20 @@ Drawing.SpProperties = {
     return o;
   },
   ln(x) {
-    if (x.$1('noFill')) return { width: 0 };
+    if (x.$2('noFill')) return { width: 0 };
 
     var o = this.asObject(x),
       t;
 
-    (t = x.$1('solidFill')) && (o.color = this.solidFill(t));
+    (t = x.$2('solidFill')) && (o.color = this.solidFill(t));
 
     (t = o.w) && (o.width = this.asPt(t, 'cm')) && delete o.w;
-    (t = x.$1('prstDash')) && (o.dash = t.attr('val'));
+    (t = x.$2('prstDash')) && (o.dash = t.attr('val'));
     return o;
   },
   effectLst(x) {},
   blipFill(x) {
-    return this.wDoc.getRel(x.$1('blip').attr('r:embed'));
+    return this.wDoc.getRel(x.$2('blip').attr('r:embed'));
   },
   prstGeom(x) {
     var px = this.pt2Px,
@@ -139,7 +139,7 @@ Drawing.SpProperties = {
         return this.pt2Px(this.asPt(x, 'cm'));
       }.bind(this);
     for (
-      var a, children = x.$1('path').childNodes, len = children.length, i = 0;
+      var a, children = x.$2('path').childNodes, len = children.length, i = 0;
       i < len;
       i++
     ) {

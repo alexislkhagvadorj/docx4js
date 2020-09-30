@@ -12,17 +12,17 @@ export default class inline extends require('../model') {
   }
   getDirectStyle(pr) {
     return (
-      (pr = this.wXml.$1('>rPr')) && new Style.Properties(pr, this.wDoc, this)
+      (pr = this.wXml.$2('>rPr')) && new Style.Properties(pr, this.wDoc, this)
     );
   }
   _shouldIgnore(wXml) {
     return wXml.localName == 'rPr';
   }
   isWebHidden() {
-    return this.wXml.$1('>rPr>webHidden');
+    return this.wXml.$2('>rPr>webHidden');
   }
   isHidden() {
-    return this.wXml.$1('>rPr>vanish');
+    return this.wXml.$2('>rPr>vanish');
   }
   static get type() {
     return 'inline';

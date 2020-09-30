@@ -10,7 +10,7 @@ export default class paragraph extends require('../model') {
     return this.wDoc.style.get(this.getStyleId());
   }
   getDirectStyle(pr) {
-    if ((pr = this.wXml.$1('>pPr')))
+    if ((pr = this.wXml.$2('>pPr')))
       return new Style.Properties(pr, this.wDoc, this);
   }
   _shouldIgnore(wXml) {

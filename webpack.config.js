@@ -20,14 +20,6 @@ module.exports = {
     },
     extensions: ['.js', '.scss', '.html']
   },
-  // externals: {
-  //   'docx4js': {
-  //     commonjs: 'docx4js',
-  //     commonjs2: 'docx4js',
-  //     amd: 'docx4js',
-  //     root: 'docx4js'
-  //   }
-  // },
   module: {
     rules: [
       {

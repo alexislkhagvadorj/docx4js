@@ -45,7 +45,7 @@ export default class Document {
 
   parse(visitorFactories){
     this.getPart('core-properties')
-      .documentElement.$('keywords,description,title')
+      .documentElement.$1('keywords,description,title')
       .forEach(function (x) {
         var v = x.textContent.trim();
         v.length && (this[x.localName] = v);
@@ -54,7 +54,7 @@ export default class Document {
       (this.props.keywords = this.props.keywords.split(','));
 
     this.getPart('extended-properties')
-      .documentElement.$('Template')
+      .documentElement.$1('Template')
       .forEach(function (x) {
         var v = x.textContent.trim();
         v.length && (this[x.localName] = v);

@@ -16,15 +16,15 @@ export default class list extends require('./paragraph') {
 
     let numId = ((t) => {
       var numId =
-        (t = this.wXml.$1('>pPr>numPr')) &&
-        (t = t.$1('numId')) &&
+        (t = this.wXml.$2('>pPr>numPr')) &&
+        (t = t.$2('numId')) &&
         (t = t.attr('w:val'));
       !numId && (t = this.getNamedStyle()) && (numId = t.getNumId());
       return numId;
     })();
 
     let level = ((t) => {
-      return (t = this.wXml.$1('>pPr>numPr>ilvl')) ? t.attr('w:val') : '0';
+      return (t = this.wXml.$2('>pPr>numPr>ilvl')) ? t.attr('w:val') : '0';
     })();
 
     this.getLevel = () => level;

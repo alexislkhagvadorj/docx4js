@@ -20,7 +20,7 @@ export default class section extends Style.Properties {
     var value = this.asObject(x, (v) => this.pt2Px(this.asPt(v)));
     if (
       value.gutter &&
-      this.wDoc.getPart('settings').documentElement.$1('gutterAtTop')
+      this.wDoc.getPart('settings').documentElement.$2('gutterAtTop')
     )
       value.gutterAtRight = 1;
     return value;
@@ -29,7 +29,7 @@ export default class section extends Style.Properties {
     var o = this.asObject(x, parseInt);
     o.space && (o.space = this.pt2Px(this.asPt(o.space)));
 
-    let data = Array.from(x.$('col')).map((a) => {
+    let data = Array.from(x.$1('col')).map((a) => {
       return {
         width: this.pt2Px(this.asPt(a.attr('w:w'))),
         space: this.pt2Px(this.asPt(a.attr('w:space'))),

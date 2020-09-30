@@ -9,7 +9,7 @@ export default class List extends require('../style') {
 
   _iterate(f, factories, visitors) {
     for (
-      var i = 0, children = this.wXml.$('lvlOverride'), l = children.length, t;
+      var i = 0, children = this.wXml.$1('lvlOverride'), l = children.length, t;
       i < l;
       i++
     ) {
@@ -26,7 +26,7 @@ export default class List extends require('../style') {
   getParentStyle() {
     var definition = this.wDoc.style.get(
       require('./numberingDefinition').asStyleId(
-        this.wXml.$1('abstractNumId').attr('w:val')
+        this.wXml.$2('abstractNumId').attr('w:val')
       )
     );
     if (definition.link) {

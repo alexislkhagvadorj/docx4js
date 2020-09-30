@@ -3,11 +3,11 @@ import Drawing from './drawing';
 export default class drawingAnchor extends Drawing {
   constructor(wXml) {
     super(...arguments);
-    this.wDrawing = wXml.$1('drawing>:first-child');
+    this.wDrawing = wXml.$2('drawing>:first-child');
   }
 
   _getValidChildren() {
-    return this.wDrawing.$('wsp');
+    return this.wDrawing.$1('wsp');
   }
 
   static get type() {
@@ -41,7 +41,7 @@ class Properties extends Drawing.Properties {
     'positionH,positionV,wrapNone,wrapSquare,wrapTopAndBottom,wrapTight,wrapThrough'
       .split(',')
       .forEach((a) => {
-        (t = this.wXml.$1(a)) && children.push(t);
+        (t = this.wXml.$2(a)) && children.push(t);
       });
     return children;
   }

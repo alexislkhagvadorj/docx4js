@@ -34,15 +34,15 @@ export default class Factory extends Base {
     else if ('body' == tag)
       return new (require('./model/body'))(wXml, doc, parent);
     else if ('p' == tag) {
-      var styleId = attr(wXml.$1('>pPr>pStyle'), 'w:val'),
+      var styleId = attr(wXml.$2('>pPr>pStyle'), 'w:val'),
         style = doc.style.get(styleId);
-      if (wXml.$1('>pPr>numPr') || (style && style.getNumId() != -1))
+      if (wXml.$2('>pPr>numPr') || (style && style.getNumId() != -1))
         return new (require('./model/list'))(wXml, doc, parent);
 
       let outlineLvl = -1,
         tmp;
       if (style) outlineLvl = style.getOutlineLevel();
-      else if ((tmp = wXml.$1('>pPr>outlineLvl'))) {
+      else if ((tmp = wXml.$2('>pPr>outlineLvl'))) {
         tmp = parseInt(attr(tmp));
         outlineLvl = parseInt(tmp);
       }
@@ -52,12 +52,12 @@ export default class Factory extends Base {
 
       return new (require('./model/paragraph'))(wXml, doc, parent);
     } else if ('r' == tag) {
-      let style = doc.style.get(attr(wXml.$1('>rPr>rStyle'), 'w:val'));
+      let style = doc.style.get(attr(wXml.$2('>rPr>rStyle'), 'w:val'));
 
       let outlineLvl = -1,
         tmp;
       if (style) outlineLvl = style.getOutlineLevel();
-      else if ((tmp = wXml.$1('>rPr>outlineLvl'))) {
+      else if ((tmp = wXml.$2('>rPr>outlineLvl'))) {
         tmp = attr(tmp);
         outlineLvl = parseInt(tmp);
       }
@@ -133,7 +133,7 @@ export default class Factory extends Base {
     else if ('wsp' == tag)
       return new (require('./model/shape'))(wXml, doc, parent);
     else if ('inline' == tag) {
-      var type = wXml.$1('>graphic>graphicData').attr('uri').split('/').pop();
+      var type = wXml.$2('>graphic>graphicData').attr('uri').split('/').pop();
       switch (type) {
         case 'picture':
           return new (require('./model/image'))(wXml, doc, parent);
@@ -145,7 +145,7 @@ export default class Factory extends Base {
           console.error('inline ' + type + ' is not suppored yet.');
       }
     } else if ('sdt' == tag) {
-      var elBinding = wXml.$1('>sdtPr>dataBinding');
+      var elBinding = wXml.$2('>sdtPr>dataBinding');
       if (elBinding) {
         //properties
         var path = attr(elBinding, 'w:xpath'),
@@ -160,8 +160,8 @@ export default class Factory extends Base {
       } else {
         //controls
         let elType = wXml
-          .$1('>sdtPr')
-          .$1(
+          .$2('>sdtPr')
+          .$2(
             'text, picture, docPartList, comboBox, dropDownList, date, checkbox'
           );
         tag = elType ? elType.localName : 'richtext';

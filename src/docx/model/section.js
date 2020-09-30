@@ -33,7 +33,7 @@ export default class section extends Model {
 
   _iterateHeaderFooter(visitorFactories, refType) {
     for (
-      var refs = this.wXml.$(refType + 'Reference'), i = 0, len = refs.length;
+      var refs = this.wXml.$1(refType + 'Reference'), i = 0, len = refs.length;
       i < len;
       i++
     ) {
